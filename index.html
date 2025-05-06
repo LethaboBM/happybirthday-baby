@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For My Love</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-y: auto;
+      font-family: 'Georgia', serif;
+    }
+
+    body {
+      color: #fff;
+      text-align: center;
+      transition: background 1s ease-in-out;
+      background: #000;
+    }
+
+    #background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    #background img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #background img.active {
+      opacity: 1;
+    }
+
+    .overlay {
+      background: rgba(255, 192, 203, 0.15);
+      backdrop-filter: blur(6px);
+      border: 2px solid #ffdee9;
+      border-radius: 20px;
+      padding: 40px;
+      display: inline-block;
+      max-width: 700px;
+      margin: 100px 20px;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    h1, h2 {
+      color: #ffdee9;
+      font-weight: normal;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #fffafc;
+    }
+
+    button {
+      background-color: #fff;
+      color: #ff4081;
+      padding: 15px 35px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff4081;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    #birthdayNote, #loveLetter {
+      display: none;
+      animation: fadeIn 1.5s ease-in-out;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="background">
+    <img src="bg1.jpg" class="active">
+    <img src="bg2.jpg">
+    <img src="bg3.jpg">
+    <img src="bg4.png">
+  </div>
+
+  <div class="overlay" id="landing">
+    <h1>Happy Birthday, My Love</h1>
+    <p>One click, and your surprise begins…</p>
+    <button onclick="showBirthdayNote()">Unwrap Your First Gift</button>
+  </div>
+
+  <div class="overlay" id="birthdayNote">
+    <h2>To the Love of My Life</h2>
+   
+    <p>
+      On this day, many years ago, the world was blessed with a beautiful human being. I can imagine how the world lit up to receive your presence and how the stars aligned to celebrate your arrival. You are a gift to everyone who knows you, but most of all, you are my greatest treasure.🤍
+    </p>
+    <p>
+      You’re honestly one of the top few best thing to ever happen to me! You’re so kind and amazing! You’re honestly everything a girl can ever ask and wish for.🥺❤
+    </p>
+    <p>
+      I’m really so honoured to be a part of your life. I’m really so honoured to be one of the people who got to experience you as a person and in fullness! What a privilege it is to know you and to share life with you.🥹❤ God was really bragging and showing off when He made you! He had me in mind that we would one day find each other and eventually become inseparable!
+    </p>
+    <p>
+      I pray that may this new chapter bring you endless joy, love, and the fulfilment of ALL your heart’s deepest desires and I pray that may God preserve you for me. 🥹❤ I can’t wait to see us grow older and experience all your Ws. I vow to always be there for you, to show up for you at all times and in all situations.
+    </p>
+    <p>
+      And I thank God for you, He really knew that we’d be perfect for each other. 🥹❤
+    </p>
+    <p>
+      I love you so much!! ❤<br>
+      Happy birthday 😘
+    </p>
+    <button onclick="showLoveLetter()">Where's My Gift?</button>
+  </div>
+
+  <div class="overlay" id="loveLetter">
+    <h2>Here’s the Truth...</h2>
+    <p>
+      You are the gift.<br><br>
+
+      <p>
+        You are really such an awesome person. I love your patience and kindness, but most importantly, I love your consistency. You are so loving and caring. 
+        You are so understanding and you always try to see the best in people, sometimes I really wonder how you do it. You are so humble and genuine and so wise. 
+        You are so beautiful, inside and out, and I’m so grateful that I get to call you mine! 🥹❤
+      </p>
+
+      <p>
+        I’m so grateful to God for you and for the love we share. I’m so grateful that He chose me to be your partner in this life. 
+        I’m so grateful that He chose me to be the one who gets to love you and experience you in all your fullness!
+      </p>
+
+      <p>
+        I vow to always be your biggest cheerleader and to always support you in all your endeavours. I vow to always be your safe space and to always be there for you, no matter what. 
+        I vow to always love you, even when it’s hard. I vow to always choose you, even when it’s hard. I vow to always be your best friend and partner in life time.
+      </p>
+
+      <br><br>
+      Jk, your gift is on it's way. I hope you enjoy your day.<br>
+      Happy Birthday, baby.
+    </p>
+  </div>
+
+  <script>
+    // Confetti on load
+    window.onload = function () {
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#ff4081', '#ffffff', '#ffd1dc']
+      });
+    };
+
+    // Background image fading logic
+    const imgs = document.querySelectorAll('#background img');
+    let current = 0;
+
+    setInterval(() => {
+      imgs[current].classList.remove('active');
+      current = (current + 1) % imgs.length;
+      imgs[current].classList.add('active');
+    }, 2000);
+
+    function showBirthdayNote() {
+      document.getElementById('landing').style.display = 'none';
+      document.getElementById('birthdayNote').style.display = 'inline-block';
+    }
+
+    function showLoveLetter() {
+      document.getElementById('birthdayNote').style.display = 'none';
+      document.getElementById('loveLetter').style.display = 'inline-block';
+    }
+  </script>
+
+</body>
+</html>
